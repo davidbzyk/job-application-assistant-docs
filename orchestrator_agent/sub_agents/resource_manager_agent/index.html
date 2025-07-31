@@ -11,18 +11,22 @@
       
       
       
+        <link rel="prev" href="../job_scraper_agent/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+        <link rel="next" href="../content_generator_agent/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Job Application Assistant - Job Application Assistant</title>
+        <title>Resource Manager - Job Application Assistant</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
       
       
 
@@ -41,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#job-application-assistant" class="md-skip">
+        <a href="#resource-manager-agent" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Job Application Assistant" class="md-header__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+    <a href="../../.." title="Job Application Assistant" class="md-header__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Job Application Assistant
+              Resource Manager
             
           </span>
         </div>
@@ -176,7 +180,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Job Application Assistant" class="md-nav__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+    <a href="../../.." title="Job Application Assistant" class="md-nav__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -194,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -213,18 +217,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -240,7 +246,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Sub-Agents
@@ -254,7 +260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orchestrator_agent/sub_agents/job_scraper_agent/" class="md-nav__link">
+      <a href="../job_scraper_agent/" class="md-nav__link">
         
   
   
@@ -274,10 +280,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../orchestrator_agent/sub_agents/resource_manager_agent/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Resource Manager
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -288,6 +316,155 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-regular-resource-manager-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Regular Resource Manager (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-batch-resource-manager-batch_resource_managerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Batch Resource Manager (batch_resource_manager.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-junior-resource-manager-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Junior Resource Manager (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smart-batch-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smart Batch Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-based-resume-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role-Based Resume Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      State Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -300,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orchestrator_agent/sub_agents/content_generator_agent/" class="md-nav__link">
+      <a href="../content_generator_agent/" class="md-nav__link">
         
   
   
@@ -323,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orchestrator_agent/sub_agents/application_submitter_agent/" class="md-nav__link">
+      <a href="../application_submitter_agent/" class="md-nav__link">
         
   
   
@@ -346,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orchestrator_agent/sub_agents/database_agent/" class="md-nav__link">
+      <a href="../database_agent/" class="md-nav__link">
         
   
   
@@ -369,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orchestrator_agent/sub_agents/email_assistant_agent/" class="md-nav__link">
+      <a href="../email_assistant_agent/" class="md-nav__link">
         
   
   
@@ -437,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orchestrator_agent/tools/" class="md-nav__link">
+      <a href="../../tools/" class="md-nav__link">
         
   
   
@@ -505,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../chrome-extension/" class="md-nav__link">
+      <a href="../../../chrome-extension/" class="md-nav__link">
         
   
   
@@ -555,19 +732,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-architecture" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      🏗️ System Architecture
+      Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🏗️ System Architecture">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#agent-hierarchy" class="md-nav__link">
+  <a href="#1-regular-resource-manager-agentpy" class="md-nav__link">
     <span class="md-ellipsis">
-      Agent Hierarchy
+      1. Regular Resource Manager (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-batch-resource-manager-batch_resource_managerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Batch Resource Manager (batch_resource_manager.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-junior-resource-manager-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Junior Resource Manager (agent.py)
     </span>
   </a>
   
@@ -579,18 +783,78 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
-      🔑 Key Features
+      Usage
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
+  <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      📚 Documentation
+      Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smart-batch-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smart Batch Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-based-resume-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role-Based Resume Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      State Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
     </span>
   </a>
   
@@ -612,39 +876,83 @@
 
 
 
-<h1 id="job-application-assistant">Job Application Assistant</h1>
-<p>A sophisticated multi-agent job application automation system built on Google's Agent Development Kit (ADK). This system automates the complete job application workflow: scraping jobs from multiple sites, creating Google Drive folders with resumes, generating tailored cover letters, and submitting applications.</p>
-<h2 id="system-architecture">🏗️ System Architecture</h2>
-<p><div class="highlight"><pre><span></span><code>User Input → Orchestrator Agent → Specialized Sub-Agents → Database &amp; Google Drive
-</code></pre></div>
-<img alt="Process Map" src="images/process-map.png" /></p>
-<h3 id="agent-hierarchy">Agent Hierarchy</h3>
-<div class="highlight"><pre><span></span><code>orchestrator_agent (LlmAgent)
-├── job_scraper_agent (scrapes from 5+ sites)
-├── resource_manager_agent (creates folders, copies resumes)
-│   └── batch_resource_manager (handles bulk folder operations)
-├── content_generator_agent (analyzes fit, writes cover letters)
-│   └── batch_content_generator (handles &gt;25 jobs with rate limiting)
-├── database_agent (database operations)
-├── application_submitter_agent (automated submissions)
-│   └── batch_submitter (sequential job applications)
-└── email_assistant_agent (email classification)
-</code></pre></div>
-<h2 id="key-features">🔑 Key Features</h2>
+<h1 id="resource-manager-agent">Resource Manager Agent</h1>
+<p>This module handles the creation of Google Drive folders and copying of role-specific resumes for job applications.</p>
+<h2 id="overview">Overview</h2>
+<p>The Resource Manager is responsible for:
+- Creating company-specific folders in Google Drive
+- Copying the appropriate resume (engineer vs product) based on job role
+- Converting documents to PDF format
+- Updating the database with folder and document links</p>
+<h2 id="components">Components</h2>
+<h3 id="1-regular-resource-manager-agentpy">1. Regular Resource Manager (<code>agent.py</code>)</h3>
 <ul>
-<li><strong>Multi-Site Job Scraping</strong>: LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs</li>
-<li><strong>Smart Deduplication</strong>: Prevents duplicate applications across sites</li>
-<li><strong>Google Drive Integration</strong>: Automated folder creation and document management</li>
-<li><strong>AI Content Generation</strong>: Personalized cover letters using Gemini models And Resumes</li>
-<li><strong>Browser Automation</strong>: Headless job application submission with CAPTCHA solving </li>
-<li><strong>Email Classification</strong>: Process job-related emails automatically</li>
-<li><strong>Batch Processing</strong>: Handle large volumes with rate limiting</li>
+<li><strong>Use case</strong>: Processing ≤50 jobs</li>
+<li><strong>Agent type</strong>: LlmAgent</li>
+<li><strong>Processes</strong>: Jobs one at a time with natural conversation flow</li>
+<li><strong>Status flow</strong>: Jobs remain in "Pending Review" after processing</li>
 </ul>
-<h2 id="documentation">📚 Documentation</h2>
+<h3 id="2-batch-resource-manager-batch_resource_managerpy">2. Batch Resource Manager (<code>batch_resource_manager.py</code>)</h3>
 <ul>
-<li><a href="ai-docs/MASTER_OVERVIEW.md">Master Overview</a> - Comprehensive system documentation</li>
-<li><a href="ai-docs/CHROME_EXTENSION_COMPLETE_GUIDE.md">Chrome Extension Guide</a> - Extension setup</li>
-<li>Agent-specific documentation in each sub-agent folder</li>
+<li><strong>Use case</strong>: Processing &gt;50 jobs  </li>
+<li><strong>Agent type</strong>: BaseAgent with internal LlmAgent worker</li>
+<li><strong>Batch size</strong>: 50 jobs per batch</li>
+<li><strong>Rate limiting</strong>: 60-second cooldown between batches</li>
+<li><strong>Error handling</strong>: Extended 90-second cooldown on Google Drive API rate limits</li>
+</ul>
+<h3 id="3-junior-resource-manager-agentpy">3. Junior Resource Manager (<code>agent.py</code>)</h3>
+<ul>
+<li><strong>Use case</strong>: Simplified version optimized for Gemini 2.0</li>
+<li><strong>Features</strong>: Also handles cleanup of rejected job folders</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>The orchestrator automatically selects the appropriate resource manager:</p>
+<div class="highlight"><pre><span></span><code>User: &quot;resource&quot;
+→ Orchestrator calls get_jobs_needing_resources()
+→ If ≤50 jobs: Uses resource_manager_agent
+→ If &gt;50 jobs: Uses batch_resource_manager
+</code></pre></div>
+<h2 id="workflow">Workflow</h2>
+<ol>
+<li><strong>Job Detection</strong>: Find jobs with status "Pending Review" that lack resume links</li>
+<li><strong>Folder Creation</strong>: Create a Google Drive folder named "{Company} - {Job Title}"</li>
+<li><strong>Resume Selection</strong>: Determine role type (engineer/product) and get appropriate resume</li>
+<li><strong>Document Copying</strong>: Copy resume to company folder with applicant name</li>
+<li><strong>PDF Conversion</strong>: Convert Google Docs to PDF format</li>
+<li><strong>Database Update</strong>: Save folder ID, resume links, and PDF links</li>
+</ol>
+<h2 id="key-features">Key Features</h2>
+<h3 id="smart-batch-processing">Smart Batch Processing</h3>
+<ul>
+<li>Processes large job queues without hitting API rate limits</li>
+<li>Automatic retry with extended cooldowns on rate limit errors</li>
+<li>Progress tracking and reporting between batches</li>
+</ul>
+<h3 id="role-based-resume-selection">Role-Based Resume Selection</h3>
+<ul>
+<li>Automatically detects job role type from job title</li>
+<li>Selects appropriate resume folder based on role</li>
+<li>Falls back to engineer resume as default</li>
+</ul>
+<h3 id="state-management">State Management</h3>
+<ul>
+<li>Uses ADK memory functions (memorize/recall_all) for session state</li>
+<li>Shares state between orchestrator and sub-agents</li>
+<li>Batch context passed via session state</li>
+</ul>
+<h2 id="important-notes">Important Notes</h2>
+<ol>
+<li><strong>Memory Functions</strong>: Never wrap <code>memorize</code> or <code>recall_all</code> in FunctionTool (causes ADK errors)</li>
+<li><strong>Status Updates</strong>: Jobs stay in "Pending Review" after resource processing</li>
+<li><strong>Content Generator Dependency</strong>: Content generator expects jobs to have resume links before processing</li>
+<li><strong>Rate Limits</strong>: Google Drive API has quotas - batch processor handles this automatically</li>
+</ol>
+<h2 id="error-handling">Error Handling</h2>
+<ul>
+<li>Missing resume folders: Falls back to engineer resume</li>
+<li>API rate limits: Automatic cooldown and retry</li>
+<li>Failed folder creation: Job remains unprocessed for next batch</li>
+<li>Database errors: Transaction rollback to maintain consistency</li>
 </ul>
 
 
@@ -694,10 +1002,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>

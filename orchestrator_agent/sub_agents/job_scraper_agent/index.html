@@ -1,0 +1,1420 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automated job application system with multi-agent architecture built on Google ADK">
+      
+      
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../resource_manager_agent/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Job Scraper - Job Application Assistant</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#job-scraper-agent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Job Application Assistant" class="md-header__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Job Application Assistant
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Job Scraper
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Job Application Assistant" class="md-nav__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Job Application Assistant
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sub-Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sub-Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Job Scraper
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Job Scraper
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-scraping-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Job Scraping Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Job Scraping Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-duplicate-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Duplicate Prevention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-site-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Site Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scraping-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Scraping Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Key Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-agent-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Main Agent (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#independent-scrapers-independent_scraperspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Independent Scrapers (independent_scrapers.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-promptpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt (prompt.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-keys-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Keys Required
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobspy-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      JobSpy Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Database Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Database Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate Prevention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Supported Sites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Supported Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-jobspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary (JobSpy)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#professional-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Professional APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#site-specific-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Site-Specific Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource_manager_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resource Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content_generator_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content Generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application_submitter_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Submitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email_assistant_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Email Assistant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database & Google Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Extensions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../chrome-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chrome Extension
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-scraping-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Job Scraping Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Job Scraping Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-duplicate-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Duplicate Prevention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-site-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Site Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scraping-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Scraping Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Key Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-agent-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Main Agent (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#independent-scrapers-independent_scraperspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Independent Scrapers (independent_scrapers.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-promptpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt (prompt.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-keys-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Keys Required
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobspy-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      JobSpy Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Database Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Database Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate Prevention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Supported Sites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Supported Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-jobspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary (JobSpy)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#professional-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Professional APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#site-specific-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Site-Specific Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="job-scraper-agent">Job Scraper Agent</h1>
+<p>The Job Scraper Agent is responsible for finding and importing job opportunities from multiple job sites including LinkedIn, Indeed, Glassdoor, ZipRecruiter, and Google Jobs. It uses a combination of JobSpy integration and professional APIs to gather job listings while avoiding duplicates.</p>
+<h2 id="architecture-overview">🏗️ Architecture Overview</h2>
+<div class="highlight"><pre><span></span><code>Orchestrator → Job Scraper Agent → Independent Scrapers
+                                        ├── LinkedIn (JobSpy)
+                                        ├── Indeed (JobSpy/Apify)
+                                        ├── Glassdoor (JobSpy)
+                                        ├── ZipRecruiter (JobSpy)
+                                        └── Google Jobs (SerpAPI)
+                                              ↓
+                                        Database (via callbacks)
+</code></pre></div>
+<h2 id="directory-structure">📁 Directory Structure</h2>
+<div class="highlight"><pre><span></span><code>job_scraper_agent/
+├── __init__.py              # Exports job_scraper_agent
+├── agent.py                 # Main LlmAgent definition
+├── prompt.py                # Agent instructions
+├── independent_scrapers.py  # Core scraping logic
+├── site_agents/            # Per-site agent configurations (unused)
+├── tools/                  # Professional API integrations
+│   ├── apify_indeed_scraper.py      # Apify for Indeed
+│   ├── serpapi_google_jobs_scraper.py # SerpAPI for Google
+│   └── serpapi_usage_tracker.py      # API usage monitoring
+└── tests/                  # Pytest tests with real data
+    ├── test_independent_scrapers.py
+    ├── test_jobspy_integration.py
+    └── ... (various integration tests)
+</code></pre></div>
+<h2 id="job-scraping-workflow">🔄 Job Scraping Workflow</h2>
+<h3 id="1-duplicate-prevention">1. <strong>Duplicate Prevention</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="n">get_applied_urls_by_role_type</span><span class="p">()</span> <span class="err">→</span> <span class="n">Returns</span> <span class="n">URLs</span> <span class="n">already</span> <span class="n">applied</span> <span class="n">to</span>
+</code></pre></div>
+<h3 id="2-site-selection">2. <strong>Site Selection</strong></h3>
+<p>Agent supports single-site or multi-site scraping:
+- Single: <code>source="linkedin"</code>
+- Multi: <code>source="all"</code> → LinkedIn + Indeed + Glassdoor</p>
+<h3 id="3-scraping-process">3. <strong>Scraping Process</strong></h3>
+<p>For each site:
+1. Get site-specific scraper function
+2. Execute with parameters (query, location, max_jobs)
+3. Filter duplicates against applied URLs
+4. Store new jobs in database with "Pending Review" status</p>
+<h3 id="4-error-handling">4. <strong>Error Handling</strong></h3>
+<ul>
+<li>Continues on site failures</li>
+<li>Reports per-site results</li>
+<li>Aggregates total jobs found</li>
+</ul>
+<h2 id="key-components">🛠️ Key Components</h2>
+<h3 id="main-agent-agentpy">Main Agent (<code>agent.py</code>)</h3>
+<ul>
+<li>LlmAgent with scraping tools</li>
+<li>Uses callbacks for state management</li>
+<li>Supports both sync and async operations</li>
+</ul>
+<h3 id="independent-scrapers-independent_scraperspy">Independent Scrapers (<code>independent_scrapers.py</code>)</h3>
+<p>Central hub that routes to appropriate scraper:
+- <strong>JobSpy Integration</strong>: LinkedIn, Indeed, Glassdoor, ZipRecruiter
+- <strong>Professional APIs</strong>: SerpAPI (Google), Apify (Indeed backup)
+- <strong>User Agent Rotation</strong>: Prevents detection
+- <strong>Real-time Deduplication</strong>: Checks against applied URLs</p>
+<h3 id="prompt-promptpy">Prompt (<code>prompt.py</code>)</h3>
+<p>Instructions for:
+- Parameter extraction from user queries
+- Multi-site coordination
+- Error recovery strategies
+- Result reporting format</p>
+<h2 id="configuration">🔧 Configuration</h2>
+<h3 id="default-parameters">Default Parameters</h3>
+<div class="highlight"><pre><span></span><code><span class="n">max_jobs</span> <span class="o">=</span> <span class="mi">5</span>          <span class="c1"># Per site limit</span>
+<span class="n">location</span> <span class="o">=</span> <span class="s2">&quot;United States&quot;</span>
+<span class="n">is_remote</span> <span class="o">=</span> <span class="kc">True</span>      <span class="c1"># Remote jobs preferred</span>
+<span class="n">easy_apply_only</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># All jobs, not just easy apply</span>
+<span class="n">content_level</span> <span class="o">=</span> <span class="s2">&quot;cover_letter_only&quot;</span>  <span class="c1"># Memorized in state</span>
+</code></pre></div>
+<h3 id="api-keys-required">API Keys Required</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env file</span>
+<span class="nv">SERPAPI_API_KEY</span><span class="o">=</span>xxx<span class="w">      </span><span class="c1"># For Google Jobs</span>
+<span class="nv">APIFY_API_TOKEN</span><span class="o">=</span>xxx<span class="w">      </span><span class="c1"># For Indeed backup</span>
+</code></pre></div>
+<h3 id="jobspy-configuration">JobSpy Configuration</h3>
+<ul>
+<li>User agent rotation enabled</li>
+<li>Proxy support available</li>
+<li>Country code: "USA"</li>
+<li>Results type: "RECENT"</li>
+</ul>
+<h2 id="database-integration">📊 Database Integration</h2>
+<h3 id="job-creation">Job Creation</h3>
+<p>Each scraped job includes:
+- <code>company_name</code>, <code>job_title</code>, <code>job_url</code>
+- <code>job_description</code> (full text)
+- <code>location</code>, <code>date_posted</code>
+- <code>application_status</code> = "Pending Review"
+- <code>role_type</code> (detected from title)
+- <code>source</code> (which site it came from)</p>
+<h3 id="duplicate-prevention">Duplicate Prevention</h3>
+<p>Before adding each job:
+1. Check URL against applied jobs
+2. Check company/title combination
+3. Skip if already in database</p>
+<h3 id="callbacks">Callbacks</h3>
+<ul>
+<li><code>populate_job_scraper_state</code> - Sets up scraping parameters</li>
+<li><code>scraping_results_callback</code> - Processes results and updates database</li>
+</ul>
+<h2 id="testing">🧪 Testing</h2>
+<p>All tests use real data with minimal pulls:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run all scraper tests</span>
+pytest<span class="w"> </span>orchestrator_agent/sub_agents/job_scraper_agent/tests/<span class="w"> </span>-v
+
+<span class="c1"># Test specific scraper</span>
+pytest<span class="w"> </span>tests/test_linkedin_descriptions.py<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="test-coverage">Test Coverage</h3>
+<ul>
+<li><code>test_independent_scrapers.py</code> - Core scraping logic</li>
+<li><code>test_jobspy_integration.py</code> - JobSpy functionality</li>
+<li><code>test_jobspy_user_agent_rotator.py</code> - Anti-detection</li>
+<li><code>test_serpapi_google.py</code> - Google Jobs API</li>
+<li><code>test_apify_indeed.py</code> - Indeed API backup</li>
+</ul>
+<h2 id="important-notes">🚨 Important Notes</h2>
+<ol>
+<li><strong>Rate Limiting</strong>: Built-in delays between sites</li>
+<li><strong>User Agent Rotation</strong>: Prevents blocking</li>
+<li><strong>Error Recovery</strong>: Continues if one site fails</li>
+<li><strong>Real Descriptions</strong>: Fetches full job descriptions</li>
+<li><strong>Location Handling</strong>: Normalizes remote/location data</li>
+</ol>
+<h2 id="debugging">🔍 Debugging</h2>
+<p>Enable debug logging:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;jobspy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Common issues:
+- <strong>No results</strong>: Check VPN/proxy settings
+- <strong>Blocked</strong>: Rotate user agents more frequently
+- <strong>API limits</strong>: Check SerpAPI/Apify quotas
+- <strong>Duplicates</strong>: Verify applied_urls list is current</p>
+<h2 id="supported-sites">🌐 Supported Sites</h2>
+<h3 id="primary-jobspy">Primary (JobSpy)</h3>
+<ul>
+<li><strong>LinkedIn</strong>: Best for professional roles</li>
+<li><strong>Indeed</strong>: Largest job database</li>
+<li><strong>Glassdoor</strong>: Good for company reviews</li>
+<li><strong>ZipRecruiter</strong>: Strong for US jobs</li>
+</ul>
+<h3 id="professional-apis">Professional APIs</h3>
+<ul>
+<li><strong>Google Jobs</strong>: Via SerpAPI for comprehensive results</li>
+<li><strong>Indeed API</strong>: Via Apify as backup option</li>
+</ul>
+<h3 id="site-specific-features">Site-Specific Features</h3>
+<ul>
+<li>LinkedIn: Easy Apply filter available</li>
+<li>Indeed: Salary data when available</li>
+<li>Glassdoor: Company ratings included</li>
+<li>Google: Aggregates from multiple sources</li>
+</ul>
+<h2 id="dependencies">🔗 Dependencies</h2>
+<ul>
+<li>JobSpy - Core scraping library</li>
+<li>SerpAPI - Google Jobs access</li>
+<li>Apify - Indeed API access</li>
+<li>BeautifulSoup - HTML parsing</li>
+<li>httpx - Async HTTP requests</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

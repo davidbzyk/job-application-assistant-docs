@@ -1,0 +1,1399 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automated job application system with multi-agent architecture built on Google ADK">
+      
+      
+      
+      
+        <link rel="prev" href="../resource_manager_agent/">
+      
+      
+        <link rel="next" href="../application_submitter_agent/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Content Generator - Job Application Assistant</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#content-generator-agent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Job Application Assistant" class="md-header__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Job Application Assistant
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Content Generator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Job Application Assistant" class="md-nav__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Job Application Assistant
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sub-Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sub-Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../job_scraper_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Job Scraper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource_manager_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resource Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Content Generator
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content Generator
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-generation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Content Generation Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Content Generation Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-fit-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Job Fit Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Job Fit Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-accept-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-Accept Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-reject-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-Reject Criteria
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-work-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Work Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Key Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular-content-generator-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regular Content Generator (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-content-generator-batch_content_generatorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Content Generator (batch_content_generator.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompts-promptpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompts (prompt.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cover-letter-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Cover Letter Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-processing-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Processing Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Database Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Database Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-job-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Job Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions Used
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Philosophy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application_submitter_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Submitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email_assistant_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Email Assistant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database & Google Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Extensions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../chrome-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chrome Extension
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-generation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Content Generation Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Content Generation Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-fit-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Job Fit Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Job Fit Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-accept-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-Accept Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-reject-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auto-Reject Criteria
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-work-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Work Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Key Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular-content-generator-agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regular Content Generator (agent.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-content-generator-batch_content_generatorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Content Generator (batch_content_generator.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompts-promptpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompts (prompt.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cover-letter-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Cover Letter Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-processing-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Processing Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Database Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Database Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-job-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Job Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions Used
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Philosophy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="content-generator-agent">Content Generator Agent</h1>
+<p>The Content Generator Agent is responsible for analyzing job fit and generating tailored cover letters for qualified positions. It processes jobs that have been prepared by the Resource Manager (with folders and resumes already in place) and determines which jobs David should apply to based on his experience and the job requirements.</p>
+<h2 id="architecture-overview">🏗️ Architecture Overview</h2>
+<p>The Content Generator has two modes of operation:</p>
+<div class="highlight"><pre><span></span><code>1. Regular Mode (≤25 jobs):
+   Orchestrator → Content Generator Agent → Direct Processing
+
+2. Batch Mode (&gt;25 jobs):
+   Orchestrator → Batch Content Generator → Content Worker (per batch)
+                     ├── Batch 1 (25 jobs) → 60s cooldown
+                     ├── Batch 2 (25 jobs) → 60s cooldown
+                     └── Batch N (remaining jobs)
+</code></pre></div>
+<h2 id="directory-structure">📁 Directory Structure</h2>
+<div class="highlight"><pre><span></span><code>content_generator_agent/
+├── __init__.py               # Exports content_generator_agent
+├── agent.py                  # Regular agent for ≤25 jobs
+├── batch_content_generator.py # Custom BaseAgent for &gt;25 jobs
+├── prompt.py                 # All prompts (regular and batch)
+├── readme.md                 # This file
+└── tests/
+    ├── conftest.py           # Pytest fixtures (real components)
+    ├── test_content_generator.py       # Tests for regular agent
+    ├── test_batch_content_generator.py # Tests for batch agent
+    └── run_tests.py          # Test runner
+</code></pre></div>
+<h2 id="content-generation-workflow">🔄 Content Generation Workflow</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Jobs must be in "Pending Review" status</li>
+<li>Each job must have:</li>
+<li><code>drive_folder_id</code> (created by Resource Manager)</li>
+<li><code>resume_link</code> (copied by Resource Manager)</li>
+<li><code>role_type</code> (engineer or product)</li>
+</ul>
+<h3 id="processing-steps">Processing Steps</h3>
+<ol>
+<li>
+<p><strong>Retrieve Jobs</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">get_jobs_ready_for_content</span><span class="p">()</span> <span class="err">→</span> <span class="n">Returns</span> <span class="n">jobs</span> <span class="k">with</span> <span class="n">folders</span> <span class="o">&amp;</span> <span class="n">resumes</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>For Each Job:</strong></p>
+</li>
+<li>Get full job details including role_type</li>
+<li>Select appropriate resume (engineer vs product)</li>
+<li>Analyze job fit based on David's experience</li>
+<li>If qualified: Generate cover letter</li>
+<li>
+<p>If not qualified: Reject with specific reason</p>
+</li>
+<li>
+<p><strong>Document Creation (if qualified)</strong></p>
+</li>
+<li>Generate personalized cover letter content</li>
+<li>Create Google Doc in existing folder</li>
+<li>Convert to PDF</li>
+<li>
+<p>Update database with document links</p>
+</li>
+<li>
+<p><strong>Status Updates</strong>
+   <div class="highlight"><pre><span></span><code>Pending Review → Ready To Apply (qualified)
+Pending Review → Not a Fit (rejected)
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="job-fit-analysis">🎯 Job Fit Analysis</h2>
+<h3 id="auto-accept-roles">Auto-Accept Roles</h3>
+<ul>
+<li><strong>AI Engineering</strong>: AI Engineer, AI Application Developer, Training Data Engineer</li>
+<li><strong>Product Management</strong>: Technical Product Manager, AI Product Manager</li>
+<li><strong>Senior Engineering</strong>: Senior Python Developer, Tech Lead</li>
+<li><strong>Full-Stack</strong>: Python backend + React/Angular frontend</li>
+<li><strong>Data Engineering</strong>: Snowflake, BigQuery, data pipelines</li>
+<li><strong>Fintech</strong>: Any finance/trading technology roles</li>
+</ul>
+<h3 id="auto-reject-criteria">Auto-Reject Criteria</h3>
+<ul>
+<li>Non-US locations</li>
+<li>Non-English job descriptions</li>
+<li>Requires 20+ years experience</li>
+<li>Completely different fields (doctor, lawyer)</li>
+<li>Entry-level only positions</li>
+<li>Pure ML Engineer roles (PyTorch/TensorFlow from scratch)</li>
+</ul>
+<h3 id="remote-work-policy">Remote Work Policy</h3>
+<p><strong>Accept as remote-friendly:</strong>
+- Remote-first, Fully remote, 100% remote
+- Hybrid, Distributed team
+- Occasional offsites are OK</p>
+<p><strong>Reject only if:</strong>
+- On-site only
+- In-office required daily/weekly
+- Specific city with no remote option</p>
+<h2 id="key-components">🛠️ Key Components</h2>
+<h3 id="regular-content-generator-agentpy">Regular Content Generator (<code>agent.py</code>)</h3>
+<ul>
+<li>LlmAgent for processing ≤25 jobs</li>
+<li>Direct processing without batching</li>
+<li>Uses centralized prompt from <code>prompt.py</code></li>
+<li>Tools:</li>
+<li>Database: get_jobs_ready_for_content, update_job_status, reject_job_with_reason</li>
+<li>Google Drive: create_cover_letter_only, convert_google_doc_to_pdf</li>
+<li>Memory: memorize, recall_all</li>
+</ul>
+<h3 id="batch-content-generator-batch_content_generatorpy">Batch Content Generator (<code>batch_content_generator.py</code>)</h3>
+<ul>
+<li>Custom BaseAgent for &gt;25 jobs</li>
+<li>Processes in batches of 25 with 60s cooldowns</li>
+<li>Fresh LLM context per batch</li>
+<li>Automatic rate limit handling</li>
+<li>Progress reporting per batch</li>
+</ul>
+<h3 id="prompts-promptpy">Prompts (<code>prompt.py</code>)</h3>
+<ul>
+<li><code>CONTENT_GENERATOR_AGENT_PROMPT</code> - Regular processing</li>
+<li><code>BATCH_CONTENT_PROMPT</code> - Batch processing</li>
+<li>Both include:</li>
+<li>Job fit criteria</li>
+<li>Cover letter template</li>
+<li>First-person voice instructions</li>
+</ul>
+<h2 id="cover-letter-template">📝 Cover Letter Template</h2>
+<div class="highlight"><pre><span></span><code>#### **David Bednarczyk**
+**Miami Beach, FL | davidbzyk@gmail.com | linkedin.com/in/david-bednarczyk/**
+
+Dear [Company Name] Hiring Team,
+
+[3-4 paragraphs in FIRST PERSON connecting David&#39;s experience to the role]
+- Current: AI model training data at Mercor
+- Recent: Full-stack Python at Simpler Trading
+- Leadership: VP Product at BNY Mellon
+- Foundation: 15 years across engineering and product
+
+Sincerely,
+David Bednarczyk
+</code></pre></div>
+<h2 id="configuration">🔧 Configuration</h2>
+<h3 id="batch-processing-settings">Batch Processing Settings</h3>
+<div class="highlight"><pre><span></span><code><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">25</span>          <span class="c1"># Jobs per batch</span>
+<span class="n">cooldown</span> <span class="o">=</span> <span class="mi">60</span>           <span class="c1"># Seconds between batches</span>
+<span class="n">extended_cooldown</span> <span class="o">=</span> <span class="mi">90</span>  <span class="c1"># On rate limit errors</span>
+</code></pre></div>
+<h3 id="model-configuration">Model Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">GEMINI_2_5_FLASH</span>  <span class="c1"># For both regular and batch</span>
+</code></pre></div>
+<h2 id="database-integration">📊 Database Integration</h2>
+<h3 id="required-job-fields">Required Job Fields</h3>
+<ul>
+<li><code>id</code>, <code>company_name</code>, <code>job_title</code>, <code>job_description</code></li>
+<li><code>drive_folder_id</code> - Google Drive folder ID</li>
+<li><code>resume_link</code> - Resume document URL</li>
+<li><code>role_type</code> - 'engineer' or 'product'</li>
+</ul>
+<h3 id="functions-used">Functions Used</h3>
+<ul>
+<li><code>get_jobs_ready_for_content()</code> - Get jobs needing content</li>
+<li><code>get_job_details(job_id)</code> - Full job information</li>
+<li><code>get_job_folder_id(job_id)</code> - Quick folder lookup</li>
+<li><code>update_job_status()</code> - Mark as Ready/Not a Fit</li>
+<li><code>reject_job_with_reason()</code> - Reject with explanation</li>
+</ul>
+<h2 id="testing">🧪 Testing</h2>
+<p>Run all tests:
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tests
+./run_tests.py
+</code></pre></div></p>
+<h3 id="test-philosophy">Test Philosophy</h3>
+<ul>
+<li>Real components, no mocks</li>
+<li>Uses actual database connections</li>
+<li>Minimal data pulls for speed</li>
+<li>Tests both regular and batch processing</li>
+</ul>
+<h2 id="important-notes">🚨 Important Notes</h2>
+<ol>
+<li><strong>Resource Manager Dependency</strong>: Jobs must have folders/resumes before content generation</li>
+<li><strong>Role Type Critical</strong>: Each job's role_type determines which resume is used</li>
+<li><strong>Rate Limiting</strong>: Batch mode prevents Google API quotas</li>
+<li><strong>First Person Voice</strong>: Cover letters must use "I/my/me", never third person</li>
+<li><strong>Skip vs Reject</strong>: Missing resume = skip (not reject) for later processing</li>
+</ol>
+<h2 id="debugging">🔍 Debugging</h2>
+<p>Check logs:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Common issues:
+- <strong>No jobs found</strong>: Check if Resource Manager has processed jobs
+- <strong>Missing folder_id</strong>: Job hasn't been through Resource Manager
+- <strong>Rate limits</strong>: Use batch mode for &gt;25 jobs
+- <strong>Wrong resume</strong>: Verify job's role_type is set correctly</p>
+<h2 id="dependencies">🔗 Dependencies</h2>
+<ul>
+<li>Google ADK - Agent framework</li>
+<li>Google Drive API - Document creation</li>
+<li>SQLite - Job database</li>
+<li>Gemini 2.5 Flash - LLM for content generation</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

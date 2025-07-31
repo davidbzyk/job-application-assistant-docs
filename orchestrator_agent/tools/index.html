@@ -1,0 +1,1198 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Automated job application system with multi-agent architecture built on Google ADK">
+      
+      
+      
+      
+        <link rel="prev" href="../sub_agents/email_assistant_agent/">
+      
+      
+        <link rel="next" href="../../chrome-extension/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Database & Google Tools - Job Application Assistant</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tools-directory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Job Application Assistant" class="md-header__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Job Application Assistant
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Database & Google Tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Job Application Assistant" class="md-nav__button md-logo" aria-label="Job Application Assistant" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Job Application Assistant
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sub-Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sub-Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub_agents/job_scraper_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Job Scraper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub_agents/resource_manager_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resource Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub_agents/content_generator_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content Generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub_agents/application_submitter_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Submitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub_agents/database_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sub_agents/email_assistant_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Email Assistant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Database & Google Tools
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database & Google Tools
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-2captchacom-for-captcha-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      using 2captcha.com for captcha bypass
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Core Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Core Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#databasepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      database.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google_api_toolspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      google_api_tools.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memorypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      memory.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_callbackspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug_callbacks.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Categories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Security
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Extensions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chrome-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chrome Extension
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-2captchacom-for-captcha-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      using 2captcha.com for captcha bypass
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Core Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Core Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#databasepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      database.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google_api_toolspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      google_api_tools.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memorypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      memory.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_callbackspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug_callbacks.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Categories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Important Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Security
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tools-directory">Tools Directory</h1>
+<p>This directory contains the core functionality that powers all agents in the LinkedIn Applier system. These tools are imported and used by various agents to perform database operations, Google API interactions, memory management, and utility functions.</p>
+<h2 id="using-2captchacom-for-captcha-bypass">using 2captcha.com for captcha bypass</h2>
+<h2 id="directory-structure">📁 Directory Structure</h2>
+<div class="highlight"><pre><span></span><code>tools/
+├── database.py              # All database operations (~1000 lines)
+├── google_api_tools.py      # Google Drive/Docs/Gmail APIs (~1500 lines)
+├── memory.py                # ADK callbacks and state management
+├── debug_callbacks.py       # Debug logging callbacks
+├── tests/                   # Comprehensive test suite
+│   ├── test_database_*.py   # Database function tests
+│   ├── test_gmail_*.py      # Gmail verification tests
+│   ├── test_task2_*.py      # Google Drive workflow tests
+│   ├── conftest.py          # Pytest fixtures
+│   └── run_tests.py         # Test runner
+└── utilities/               # Standalone utility scripts
+    ├── check_jobs.py
+    ├── check_sources.py
+    ├── debug_job.py
+    ├── fix_missing_folder_ids.py
+    ├── retroactive_folder_id_mapping.py
+    └── test_scripts/        # Non-pytest test scripts
+</code></pre></div>
+<h2 id="core-modules">🛠️ Core Modules</h2>
+<h3 id="databasepy">database.py</h3>
+<p>Central database operations module handling all SQLite interactions.</p>
+<p><strong>Key Functions:</strong>
+- <strong>Job Management</strong>
+  - <code>add_job()</code> - Add new scraped job
+  - <code>update_job_status()</code> - Update job status in pipeline
+  - <code>get_job_details()</code> - Get complete job information
+  - <code>get_jobs_by_status()</code> - Retrieve jobs by status</p>
+<ul>
+<li><strong>Application Tracking</strong></li>
+<li><code>reserve_job_for_application()</code> - Atomic job reservation</li>
+<li><code>update_job_status_applied()</code> - Mark job as applied</li>
+<li><code>release_job_reservation()</code> - Release failed reservation</li>
+<li>
+<p><code>get_applied_urls_by_role_type()</code> - Duplicate prevention</p>
+</li>
+<li>
+<p><strong>Resource Management</strong></p>
+</li>
+<li><code>get_jobs_needing_resources()</code> - Jobs without folders/resumes</li>
+<li><code>update_job_folder_id()</code> - Store Google Drive folder ID</li>
+<li>
+<p><code>get_job_folder_id()</code> - Quick folder lookup</p>
+</li>
+<li>
+<p><strong>Content Generation</strong></p>
+</li>
+<li><code>get_jobs_ready_for_content()</code> - Jobs with resources ready</li>
+<li><code>reject_job_with_reason()</code> - Mark job as not qualified</li>
+<li><code>get_jobs_by_content_level()</code> - Filter by content needs</li>
+</ul>
+<p><strong>Database Schema:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">jobs</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">company_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">job_title</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">job_url</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">job_description</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">application_status</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">role_type</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">drive_folder_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">resume_link</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cover_letter_link</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">applied_date</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rejection_reason</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">-- timestamps and metadata</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<h3 id="google_api_toolspy">google_api_tools.py</h3>
+<p>Comprehensive Google API integration for Drive, Docs, and Gmail.</p>
+<p><strong>Key Functions:</strong>
+- <strong>Authentication</strong>
+  - <code>get_drive_service()</code> - Drive API client
+  - <code>get_docs_service()</code> - Docs API client
+  - <code>get_gmail_service()</code> - Gmail API client</p>
+<ul>
+<li><strong>Folder Operations</strong></li>
+<li><code>create_company_folder_resource_manager()</code> - Create job folders</li>
+<li><code>find_company_folder()</code> - Search for existing folders</li>
+<li>
+<p><code>list_files_in_folder()</code> - List folder contents</p>
+</li>
+<li>
+<p><strong>Document Operations</strong></p>
+</li>
+<li><code>copy_google_drive_file()</code> - Copy resume to job folder</li>
+<li><code>create_cover_letter_only()</code> - Create cover letter doc</li>
+<li><code>convert_google_doc_to_pdf()</code> - PDF conversion</li>
+<li>
+<p><code>download_file_from_drive()</code> - Download for submission</p>
+</li>
+<li>
+<p><strong>Gmail Integration</strong></p>
+</li>
+<li><code>search_gmail_for_verification_code()</code> - Get verification codes</li>
+<li><code>extract_verification_code_from_html()</code> - Parse email HTML</li>
+</ul>
+<p><strong>Role-Based Resume Mapping:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">ROLE_RESUME_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;engineer&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;folder_id&#39;</span><span class="p">:</span> <span class="s1">&#39;xxx&#39;</span><span class="p">,</span>  <span class="c1"># Engineering resumes folder</span>
+        <span class="s1">&#39;resume_file_id&#39;</span><span class="p">:</span> <span class="s1">&#39;yyy&#39;</span>  <span class="c1"># Current engineering resume</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;product&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;folder_id&#39;</span><span class="p">:</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span>  <span class="c1"># Product resumes folder</span>
+        <span class="s1">&#39;resume_file_id&#39;</span><span class="p">:</span> <span class="s1">&#39;bbb&#39;</span>  <span class="c1"># Current product resume</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="memorypy">memory.py</h3>
+<p>ADK callback system for state management between agents.</p>
+<p><strong>Key Callbacks:</strong>
+- <code>populate_job_scraper_state()</code> - Setup scraping parameters
+- <code>scraping_results_callback()</code> - Process scraping results
+- <code>populate_resource_manager_state()</code> - Setup resource creation
+- <code>populate_content_generator_state()</code> - Setup content generation
+- <code>memorize()</code> / <code>recall_all()</code> - State persistence</p>
+<p><strong>State Flow Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Orchestrator sets:</span>
+<span class="n">session</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;job_title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Python Developer&#39;</span>
+<span class="n">session</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;content_level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cover_letter_only&#39;</span>
+
+<span class="c1"># Sub-agents access via callbacks:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">populate_job_scraper_state</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">job_title</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_title&#39;</span><span class="p">)</span>
+    <span class="c1"># Use for scraping...</span>
+</code></pre></div></p>
+<h3 id="debug_callbackspy">debug_callbacks.py</h3>
+<p>Logging callbacks for debugging agent interactions.</p>
+<p><strong>Available Callbacks:</strong>
+- <code>before_agent_callback()</code> - Log before agent runs
+- <code>after_agent_callback()</code> - Log after agent completes
+- <code>before_tool_callback()</code> - Log before tool execution
+- <code>after_tool_callback()</code> - Log after tool completes
+- <code>before_model_callback()</code> - Log before LLM calls</p>
+<h2 id="testing">🧪 Testing</h2>
+<p>All tests use real components (no mocks) with minimal data:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run all tools tests</span>
+<span class="nb">cd</span><span class="w"> </span>tests
+./run_tests.py
+
+<span class="c1"># Run specific test category</span>
+pytest<span class="w"> </span>test_database_*.py<span class="w"> </span>-v
+pytest<span class="w"> </span>test_gmail_*.py<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="test-categories">Test Categories</h3>
+<ul>
+<li><strong>Database Tests</strong>: CRUD operations, status transitions, reservations</li>
+<li><strong>Google API Tests</strong>: Drive operations, document creation, downloads</li>
+<li><strong>Gmail Tests</strong>: Verification code retrieval and parsing</li>
+<li><strong>Integration Tests</strong>: Complete workflows with real APIs</li>
+</ul>
+<h2 id="utilities">🔧 Utilities</h2>
+<p>Standalone scripts for maintenance and debugging:</p>
+<h3 id="check-scripts">Check Scripts</h3>
+<ul>
+<li><code>check_jobs.py</code> - Verify job data integrity</li>
+<li><code>check_sources.py</code> - Analyze job sources</li>
+<li><code>debug_job.py</code> - Debug specific job issues</li>
+</ul>
+<h3 id="fix-scripts">Fix Scripts</h3>
+<ul>
+<li><code>fix_missing_folder_ids.py</code> - Repair missing folder IDs</li>
+<li><code>retroactive_folder_id_mapping.py</code> - Map folders to jobs</li>
+<li><code>check_rejection_reasons.py</code> - Analyze rejection patterns</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>utilities
+python<span class="w"> </span>check_jobs.py<span class="w"> </span>--status<span class="w"> </span><span class="s2">&quot;Ready To Apply&quot;</span>
+python<span class="w"> </span>debug_job.py<span class="w"> </span>--job-id<span class="w"> </span><span class="m">123</span>
+</code></pre></div>
+<h2 id="important-notes">🚨 Important Notes</h2>
+<ol>
+<li><strong>Database Location</strong>: <code>orchestrator_agent/tools/linkedin_jobs.db</code></li>
+<li><strong>Credentials</strong>: Requires <code>credentials.json</code> or environment variables</li>
+<li><strong>Rate Limiting</strong>: Google APIs have quotas - use batch operations</li>
+<li><strong>Transaction Safety</strong>: All database operations are atomic</li>
+<li><strong>Error Handling</strong>: Functions return structured dicts with status/error</li>
+</ol>
+<h2 id="security">🔐 Security</h2>
+<ul>
+<li>Never commit credentials or tokens</li>
+<li>Use environment variables for sensitive data</li>
+<li>Database operations are parameterized (SQL injection safe)</li>
+<li>Google OAuth tokens auto-refresh</li>
+</ul>
+<h2 id="dependencies">🔗 Dependencies</h2>
+<ul>
+<li><code>sqlite3</code> - Database operations</li>
+<li><code>google-api-python-client</code> - Google APIs</li>
+<li><code>google-auth</code> - OAuth authentication</li>
+<li><code>PyPDF2</code> - PDF text extraction</li>
+<li><code>beautifulsoup4</code> - HTML parsing (Gmail)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

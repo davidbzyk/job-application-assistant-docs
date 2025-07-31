@@ -1,28 +1,47 @@
 /* Custom styles for documentation */
 
-/* Hide any large avatars or hero images */
+/* Hide all large images and avatars */
 .md-header__button.md-logo,
 .md-hero,
 .md-header__topic img,
-img[alt="Job Application Assistant"] {
+.md-container > img,
+.md-content > img:first-child,
+img[alt="Job Application Assistant"],
+/* Material theme specific avatar classes */
+.md-avatar,
+.md-sidebar__scrollwrap img,
+/* Any image that's too large */
+img[width="100%"],
+img[height="100%"] {
     display: none !important;
 }
 
 /* Fix content layout */
 .md-content {
     margin-top: 0 !important;
+    padding-top: 1rem !important;
 }
 
 /* Normal heading sizes */
 .md-content h1 { 
-    font-size: 2rem !important; 
+    font-size: 1.8rem !important; 
     margin-top: 1rem !important;
+    font-weight: 600 !important;
 }
 
 .md-content h2 { 
-    font-size: 1.5rem !important; 
+    font-size: 1.4rem !important; 
+    font-weight: 500 !important;
 }
 
 .md-content h3 { 
-    font-size: 1.25rem !important; 
+    font-size: 1.2rem !important; 
+    font-weight: 500 !important;
+}
+
+/* Ensure images in content are reasonable size */
+.md-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 400px !important;
 }
