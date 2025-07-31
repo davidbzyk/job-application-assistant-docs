@@ -40,7 +40,7 @@ exclude_docs: |
 
 # Theme Configuration
 theme:
-  name: material
+  name: readthedocs
 
 # Navigation
 nav:
