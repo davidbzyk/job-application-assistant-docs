@@ -44,6 +44,8 @@ theme:
   features:
     - navigation.sections
     - navigation.expand
+    - navigation.top
+    - toc.integrate
 
 # Navigation
 nav:
@@ -65,3 +67,7 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+
+# Custom CSS
+extra_css:
+  - stylesheets/extra.css

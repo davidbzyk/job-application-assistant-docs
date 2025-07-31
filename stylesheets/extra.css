@@ -1,0 +1,20 @@
+/* Custom styles for documentation */
+
+/* Reduce heading sizes in content */
+.md-content h1 { 
+    font-size: 1.8rem !important; 
+    margin-top: 0 !important;
+}
+
+.md-content h2 { 
+    font-size: 1.4rem !important; 
+}
+
+.md-content h3 { 
+    font-size: 1.2rem !important; 
+}
+
+/* Hide duplicate page title if it matches nav */
+.md-content > h1:first-child {
+    display: none;
+}
