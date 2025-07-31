@@ -41,11 +41,6 @@ exclude_docs: |
 # Theme Configuration
 theme:
   name: material
-  features:
-    - navigation.sections
-    - navigation.expand
-    - navigation.top
-    - toc.integrate
 
 # Navigation
 nav:
