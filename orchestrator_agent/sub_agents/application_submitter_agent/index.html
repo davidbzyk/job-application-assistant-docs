@@ -464,6 +464,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4. Browser Automation Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linkedin-submitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn Submitter:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-jobs-submitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Jobs Submitter:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -512,6 +536,15 @@
   <a href="#linkedin-submitter-toolslinkedin_submitterpy" class="md-nav__link">
     <span class="md-ellipsis">
       LinkedIn Submitter (tools/linkedin_submitter.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-submitter-toolsgoogle_submitterpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Submitter (tools/google_submitter.py)
     </span>
   </a>
   
@@ -1051,6 +1084,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4. Browser Automation Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linkedin-submitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn Submitter:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-jobs-submitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Jobs Submitter:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1099,6 +1156,15 @@
   <a href="#linkedin-submitter-toolslinkedin_submitterpy" class="md-nav__link">
     <span class="md-ellipsis">
       LinkedIn Submitter (tools/linkedin_submitter.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-submitter-toolsgoogle_submitterpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Submitter (tools/google_submitter.py)
     </span>
   </a>
   
@@ -1345,14 +1411,19 @@
 
 
 <h1 id="application-submitter-agent">Application Submitter Agent</h1>
-<p>The Application Submitter Agent is responsible for automatically submitting job applications on LinkedIn using Browser Use automation. It processes jobs marked as "Ready To Apply" in the database using a subprocess-based approach that ensures complete Chrome isolation between jobs to prevent 429 rate limiting errors.</p>
+<p>The Application Submitter Agent is responsible for automatically submitting job applications on LinkedIn and Google Jobs using Browser Use automation. It processes jobs marked as "Ready To Apply" in the database using a subprocess-based approach that ensures complete Chrome isolation between jobs to prevent 429 rate limiting errors.</p>
 <h2 id="architecture-overview">🏗️ Architecture Overview</h2>
 <div class="highlight"><pre><span></span><code>Orchestrator Agent
     └── Batch Submitter Agent (orchestration layer)
-            └── linkedin_submitter.py (subprocess execution)
+            ├── linkedin_submitter.py (subprocess execution)
+            │       ├── Chrome Process Management (fresh instance per job)
+            │       ├── Browser Use CDP Connection
+            │       ├── Controller Actions (file uploads, Gmail verification)
+            │       └── Database Updates
+            └── google_submitter.py (subprocess execution)
                     ├── Chrome Process Management (fresh instance per job)
                     ├── Browser Use CDP Connection
-                    ├── Controller Actions (file uploads, Gmail verification)
+                    ├── Controller Actions (file uploads, navigation)
                     └── Database Updates
 </code></pre></div>
 <h3 id="key-change-subprocess-isolation">Key Change: Subprocess Isolation</h3>
@@ -1367,32 +1438,45 @@
 ├── batch_submitter.py         # NEW: Subprocess-based batch processor
 ├── prompt.py                  # Browser Use prompts and job submission instructions
 ├── tools/
-│   ├── linkedin_submitter.py  # Main submission tool (runs as subprocess)
+│   ├── linkedin_submitter.py  # LinkedIn submission tool (runs as subprocess)
+│   ├── google_submitter.py    # Google Jobs submission tool (runs as subprocess)
+│   ├── browser_actions/       # Shared browser automation actions
+│   │   └── shared_browser_actions.py  # Consolidated controller actions
 │   ├── single_browser_processor.py  # Legacy Browser Use automation
 │   └── fix_bu_agent_wrappers.py   # Utility for agent wrappers
 ├── logs/                      # Job-specific log files
-│   └── linkedin_submitter_job{id}_{timestamp}.log
+│   ├── linkedin/
+│   │   └── linkedin_submitter_{job_id}_{timestamp}.log
+│   └── google/
+│       └── google_submitter_{job_id}_{timestamp}.log
 └── tests/
     ├── conftest.py            # Pytest fixtures (real components, no mocks)
     ├── test_*.py              # Integration tests
     ├── run_tests.py           # Test runner with -vrA flags
     └── scripts/               # Standalone test scripts
-        ├── linkedin_apply_simple_copy2.py  # Working test script
+        ├── linkedin_apply_simple_copy2.py  # Working LinkedIn test script
+        ├── google_jobs_tester.py      # Google Jobs test script
+        ├── linkedin_test_script.py    # Simplified LinkedIn test
         └── browseruse_*.py    # Browser Use profile testing
 </code></pre></div>
 <h2 id="application-workflow">🔄 Application Workflow</h2>
 <h3 id="subprocess-execution-model">Subprocess Execution Model</h3>
 <div class="highlight"><pre><span></span><code><span class="n">batch_submitter</span><span class="o">.</span><span class="n">py</span> <span class="err">→</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="err">→</span> <span class="n">linkedin_submitter</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span>
+                                    <span class="err">└──→</span> <span class="n">google_submitter</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span>
 </code></pre></div>
 <h3 id="1-batch-processing">1. <strong>Batch Processing</strong></h3>
 <ul>
 <li>Batch Submitter fetches jobs with "Ready To Apply" status</li>
+<li>Routes jobs to appropriate submitter based on <code>submitter_tool</code> field</li>
 <li>Processes one job at a time with 30-second cooldowns</li>
 <li>Each job runs in isolated subprocess</li>
 </ul>
 <h3 id="2-subprocess-execution">2. <strong>Subprocess Execution</strong></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Run linkedin_submitter as standalone process</span>
-<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">python_path</span><span class="p">,</span> <span class="s2">&quot;linkedin_submitter.py&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">job_id</span><span class="p">)])</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run appropriate submitter based on job source</span>
+<span class="k">if</span> <span class="n">job</span><span class="p">[</span><span class="s1">&#39;submitter_tool&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;linkedin_submitter&#39;</span><span class="p">:</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">python_path</span><span class="p">,</span> <span class="s2">&quot;linkedin_submitter.py&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">job_id</span><span class="p">)])</span>
+<span class="k">elif</span> <span class="n">job</span><span class="p">[</span><span class="s1">&#39;submitter_tool&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;google_submitter&#39;</span><span class="p">:</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">python_path</span><span class="p">,</span> <span class="s2">&quot;google_submitter.py&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">job_id</span><span class="p">)])</span>
 </code></pre></div>
 <h3 id="3-chrome-lifecycle-per-job">3. <strong>Chrome Lifecycle (Per Job)</strong></h3>
 <ol>
@@ -1403,6 +1487,7 @@
 <li>Exit subprocess cleanly</li>
 </ol>
 <h3 id="4-browser-automation-flow">4. <strong>Browser Automation Flow</strong></h3>
+<h4 id="linkedin-submitter">LinkedIn Submitter:</h4>
 <ul>
 <li>Downloads resume/cover letter from Google Drive</li>
 <li>Connects to Chrome via CDP</li>
@@ -1411,13 +1496,26 @@
 <li>Uploads documents and fills forms</li>
 <li>Submits application</li>
 </ul>
+<h4 id="google-jobs-submitter">Google Jobs Submitter:</h4>
+<ul>
+<li>Downloads resume/cover letter from Google Drive</li>
+<li>Connects to Chrome via CDP</li>
+<li>Navigates to Google Jobs URL</li>
+<li>Extracts and follows Apply button to company site</li>
+<li>Handles various application portals (Greenhouse, Lever, etc.)</li>
+<li>Uploads documents and fills forms</li>
+<li>Submits application</li>
+</ul>
 <h3 id="5-controller-actions">5. <strong>Controller Actions</strong></h3>
-<p>Same as before, but executed within subprocess context:
-- Resume/cover letter content extraction
+<p>Shared browser actions (in <code>browser_actions/shared_browser_actions.py</code>):
+- Resume/cover letter content extraction (PDF support)
 - File uploads to application forms
-- Gmail verification code retrieval
+- Gmail verification code/URL retrieval
 - Database status updates
-- Personal information provision</p>
+- Personal information provision
+- Apply button detection and clicking
+- Navigation to application URLs
+- CAPTCHA handling with 2captcha integration</p>
 <h3 id="6-status-updates">6. <strong>Status Updates</strong></h3>
 <div class="highlight"><pre><span></span><code>Ready To Apply → Application in Progress → Applied/Error/Not a Fit
 </code></pre></div>
@@ -1437,18 +1535,31 @@
 3. Downloads resume/cover letter from Google Drive
 4. Starts Chrome with Browser Use profile
 5. Connects via CDP (Chrome DevTools Protocol)
-6. Runs Browser Use agent for submission
+6. Runs Browser Use agent for LinkedIn Easy Apply
+7. Terminates Chrome completely
+8. Returns JSON result via stdout</p>
+<h3 id="google-submitter-toolsgoogle_submitterpy">Google Submitter (<code>tools/google_submitter.py</code>)</h3>
+<p>Standalone script that:
+1. Takes job ID as command line argument
+2. Fetches job data from database
+3. Downloads resume/cover letter from Google Drive
+4. Starts Chrome with Browser Use profile
+5. Connects via CDP (Chrome DevTools Protocol)
+6. Runs Browser Use agent for external application sites
 7. Terminates Chrome completely
 8. Returns JSON result via stdout</p>
 <h3 id="prompts-promptpy">Prompts (<code>prompt.py</code>)</h3>
 <ul>
-<li><code>APPLICATION_TASK_PROMPT</code> - Main Browser Use instructions</li>
+<li><code>APPLICATION_TASK_PROMPT</code> - LinkedIn Easy Apply instructions</li>
+<li><code>GOOGLE_JOBS_PROMPT</code> - Google Jobs/external site instructions</li>
 <li><code>PERSONAL_INFO</code> - Consistent personal data for forms</li>
 <li>Key instructions:</li>
 <li>Skip photo upload fields</li>
 <li>Handle Enter key clearing text fields</li>
 <li>Use Gmail verification when needed</li>
 <li>Update database after completion</li>
+<li>Navigate through Google Jobs to external sites</li>
+<li>Handle various application portal formats</li>
 </ul>
 <h2 id="configuration">🔧 Configuration</h2>
 <h3 id="browser-setup-in-linkedin_submitterpy">Browser Setup (in linkedin_submitter.py)</h3>
@@ -1499,17 +1610,27 @@
 </ol>
 <h2 id="testing">🧪 Testing</h2>
 <h3 id="test-subprocess-execution">Test Subprocess Execution</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Run linkedin_submitter directly (like test script)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run linkedin_submitter directly</span>
 /home/dave/miniconda3/envs/adk/bin/python<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>orchestrator_agent/sub_agents/application_submitter_agent/tools/linkedin_submitter.py<span class="w"> </span><span class="m">819</span>
+
+<span class="c1"># Run google_submitter directly</span>
+/home/dave/miniconda3/envs/adk/bin/python<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>orchestrator_agent/sub_agents/application_submitter_agent/tools/google_submitter.py<span class="w"> </span><span class="m">820</span>
 </code></pre></div>
 <h3 id="test-via-orchestrator">Test via Orchestrator</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Use orchestrator to invoke batch_submitter_agent</span>
 python<span class="w"> </span>run_agent.py<span class="w"> </span>submit_applications
 </code></pre></div>
 <h3 id="test-scripts">Test Scripts</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Working test script that uses CDP connection</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># LinkedIn test script with CDP connection</span>
 python<span class="w"> </span>tests/scripts/linkedin_apply_simple_copy2.py
+
+<span class="c1"># Google Jobs test script</span>
+python<span class="w"> </span>tests/scripts/google_jobs_tester.py
+
+<span class="c1"># Simplified LinkedIn test</span>
+python<span class="w"> </span>tests/scripts/linkedin_test_script.py
 
 <span class="c1"># Browser Use profile testing</span>
 python<span class="w"> </span>tests/scripts/browseruse_profile_check.py
@@ -1530,12 +1651,17 @@ python<span class="w"> </span>tests/scripts/browseruse_profile_check.py
 <li><strong>Real-time Logs</strong>: Subprocess output streams to console while also saving to log files</li>
 <li><strong>CDP Connection</strong>: Connects to existing Chrome instance instead of Browser Use spawning it</li>
 <li><strong>No Process Management in ADK</strong>: Chrome lifecycle handled by subprocess exit, not ADK</li>
+<li><strong>Shared Browser Actions</strong>: Both submitters use consolidated actions from <code>browser_actions/shared_browser_actions.py</code></li>
+<li><strong>Platform Support</strong>: Supports jobs from LinkedIn, Indeed, Glassdoor, ZipRecruiter, and Google Jobs</li>
 </ol>
 <h2 id="debugging">🔍 Debugging</h2>
 <h3 id="log-locations">Log Locations</h3>
 <div class="highlight"><pre><span></span><code># Individual job logs
 orchestrator_agent/sub_agents/application_submitter_agent/logs/
-└── linkedin_submitter_job{id}_{timestamp}.log
+├── linkedin/
+│   └── linkedin_submitter_{job_id}_{timestamp}.log
+└── google/
+    └── google_submitter_{job_id}_{timestamp}.log
 
 # Real-time console output via subprocess
 </code></pre></div>
