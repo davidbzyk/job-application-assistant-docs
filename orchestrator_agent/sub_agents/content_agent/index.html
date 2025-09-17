@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../job_scraper_agent/">
+        <link rel="prev" href="../resource_manager_agent/">
       
       
-        <link rel="next" href="../content_agent/">
+        <link rel="next" href="../application_submitter_agent/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Resource Manager - Job Application Assistant</title>
+        <title>Content Generator - Job Application Assistant</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#resource-manager-agent" class="md-skip">
+        <a href="#content-agent" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Resource Manager
+              Content Generator
             
           </span>
         </div>
@@ -280,6 +280,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource_manager_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resource Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -297,7 +320,7 @@
   
   
   <span class="md-ellipsis">
-    Resource Manager
+    Content Generator
     
   </span>
   
@@ -310,7 +333,7 @@
   
   
   <span class="md-ellipsis">
-    Resource Manager
+    Content Generator
     
   </span>
   
@@ -333,46 +356,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#directory-map" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Directory Map
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
+  <a href="#stage-details" class="md-nav__link">
     <span class="md-ellipsis">
-      Components
+      Stage Details
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Components">
+    <nav class="md-nav" aria-label="Stage Details">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-regular-resource-manager-agentpy" class="md-nav__link">
+  <a href="#1-similarity_loop-similarity_scorer" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Regular Resource Manager (agent.py)
+      1. similarity_loop (similarity_scorer)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-batch-resource-manager-batch_resource_managerpy" class="md-nav__link">
+  <a href="#2-resume_loop-resume_creator" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Batch Resource Manager (batch_resource_manager.py)
+      2. resume_loop (resume_creator)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-junior-resource-manager-agentpy" class="md-nav__link">
+  <a href="#3-cover_letter_loop-cover_letter_creator" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Junior Resource Manager (agent.py)
+      3. cover_letter_loop (cover_letter_creator)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docs_loop-docs_pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. docs_loop (docs_pipeline)
     </span>
   </a>
   
@@ -384,78 +416,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#orchestration-control" class="md-nav__link">
     <span class="md-ellipsis">
-      Usage
+      Orchestration &amp; Control
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
+  <a href="#logging-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
-      Workflow
+      Logging &amp; Diagnostics
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#testing-evaluations" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#smart-batch-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Smart Batch Processing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#role-based-resume-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Role-Based Resume Selection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#state-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      State Management
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#important-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Important Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
+      Testing &amp; Evaluations
     </span>
   </a>
   
@@ -465,29 +446,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../content_agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Content Generator
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -732,46 +690,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#directory-map" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Directory Map
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
+  <a href="#stage-details" class="md-nav__link">
     <span class="md-ellipsis">
-      Components
+      Stage Details
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Components">
+    <nav class="md-nav" aria-label="Stage Details">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-regular-resource-manager-agentpy" class="md-nav__link">
+  <a href="#1-similarity_loop-similarity_scorer" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Regular Resource Manager (agent.py)
+      1. similarity_loop (similarity_scorer)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-batch-resource-manager-batch_resource_managerpy" class="md-nav__link">
+  <a href="#2-resume_loop-resume_creator" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Batch Resource Manager (batch_resource_manager.py)
+      2. resume_loop (resume_creator)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-junior-resource-manager-agentpy" class="md-nav__link">
+  <a href="#3-cover_letter_loop-cover_letter_creator" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Junior Resource Manager (agent.py)
+      3. cover_letter_loop (cover_letter_creator)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docs_loop-docs_pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. docs_loop (docs_pipeline)
     </span>
   </a>
   
@@ -783,78 +750,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#orchestration-control" class="md-nav__link">
     <span class="md-ellipsis">
-      Usage
+      Orchestration &amp; Control
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
+  <a href="#logging-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
-      Workflow
+      Logging &amp; Diagnostics
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#testing-evaluations" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#smart-batch-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Smart Batch Processing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#role-based-resume-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Role-Based Resume Selection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#state-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      State Management
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#important-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Important Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
+      Testing &amp; Evaluations
     </span>
   </a>
   
@@ -876,83 +792,93 @@
 
 
 
-<h1 id="resource-manager-agent">Resource Manager Agent</h1>
-<p>This module handles the creation of Google Drive folders and copying of role-specific resumes for job applications.</p>
-<h2 id="overview">Overview</h2>
-<p>The Resource Manager is responsible for:
-- Creating company-specific folders in Google Drive
-- Copying the appropriate resume (engineer vs product) based on job role
-- Converting documents to PDF format
-- Updating the database with folder and document links</p>
-<h2 id="components">Components</h2>
-<h3 id="1-regular-resource-manager-agentpy">1. Regular Resource Manager (<code>agent.py</code>)</h3>
-<ul>
-<li><strong>Use case</strong>: Processing ≤50 jobs</li>
-<li><strong>Agent type</strong>: LlmAgent</li>
-<li><strong>Processes</strong>: Jobs one at a time with natural conversation flow</li>
-<li><strong>Status flow</strong>: Jobs remain in "Pending Review" after processing</li>
-</ul>
-<h3 id="2-batch-resource-manager-batch_resource_managerpy">2. Batch Resource Manager (<code>batch_resource_manager.py</code>)</h3>
-<ul>
-<li><strong>Use case</strong>: Processing &gt;50 jobs  </li>
-<li><strong>Agent type</strong>: BaseAgent with internal LlmAgent worker</li>
-<li><strong>Batch size</strong>: 50 jobs per batch</li>
-<li><strong>Rate limiting</strong>: 60-second cooldown between batches</li>
-<li><strong>Error handling</strong>: Extended 90-second cooldown on Google Drive API rate limits</li>
-</ul>
-<h3 id="3-junior-resource-manager-agentpy">3. Junior Resource Manager (<code>agent.py</code>)</h3>
-<ul>
-<li><strong>Use case</strong>: Simplified version optimized for Gemini 2.0</li>
-<li><strong>Features</strong>: Also handles cleanup of rejected job folders</li>
-</ul>
-<h2 id="usage">Usage</h2>
-<p>The orchestrator automatically selects the appropriate resource manager:</p>
-<div class="highlight"><pre><span></span><code>User: &quot;resource&quot;
-→ Orchestrator calls get_jobs_needing_resources()
-→ If ≤50 jobs: Uses resource_manager_agent
-→ If &gt;50 jobs: Uses batch_resource_manager
+<h1 id="content-agent">Content Agent</h1>
+<p>The content agent owns the end-to-end content pipeline inside the ADK job application assistant. It replaces the legacy "single worker" flow with four dedicated workflows that move a job from raw resume review all the way to ready-to-apply Google Drive artifacts.</p>
+<div class="highlight"><pre><span></span><code>Ready For Content
+    v similarity_loop     (checks fit, writes score + reason)
+Ready For Resume
+    v resume_loop         (builds custom resume text)
+Ready For Cover Letter
+    v cover_letter_loop   (writes cover letter markdown)
+Ready For Docs
+    v docs_loop           (creates Docs + PDFs + links)
+Ready To Apply
 </code></pre></div>
-<h2 id="workflow">Workflow</h2>
-<ol>
-<li><strong>Job Detection</strong>: Find jobs with status "Pending Review" that lack resume links</li>
-<li><strong>Folder Creation</strong>: Create a Google Drive folder named "{Company} - {Job Title}"</li>
-<li><strong>Resume Selection</strong>: Determine role type (engineer/product) and get appropriate resume</li>
-<li><strong>Document Copying</strong>: Copy resume to company folder with applicant name</li>
-<li><strong>PDF Conversion</strong>: Convert Google Docs to PDF format</li>
-<li><strong>Database Update</strong>: Save folder ID, resume links, and PDF links</li>
-</ol>
-<h2 id="key-features">Key Features</h2>
-<h3 id="smart-batch-processing">Smart Batch Processing</h3>
+<p>All four loops execute under the Orchestrator via the ADK web component. Each loop is an <code>LlmAgent</code> armed with ADK tools and wrapped in a <code>LoopAgent</code>, so the system continually pulls new jobs while eligible rows remain in SQLite.</p>
+<h2 id="directory-map">Directory Map</h2>
+<div class="highlight"><pre><span></span><code>content_agent/
+|-- agent.py              # Declares similarity/resume/cover/docs loops + debugger agent
+|-- __input__.py          # Re-exports the LoopAgents for ADK CLI compatibility
+|-- prompts.py            # Prompts for every workflow (similarity, resume, cover letter, docs)
+|-- README.md             # You are here (source for MkDocs)
+|-- tools/
+|   |-- agent_tools.py    # DB access, Google Workspace helpers, fit-to-pages utilities
+|   |-- callbacks.py      # Turn-order guards, tool allow-lists, structured logging hooks
+|   `-- database_tools.py # (reserved for future DB helpers)
+|-- utils/
+|   |-- logging_config.py # Centralized EST logging into utils/logs/
+|   `-- preview_resume.py # Local preview helpers
+`-- tests/
+    |-- README.md         # Test &amp; eval guide
+    |-- evals/            # ADK EvalSet JSON fixtures
+    |-- golden_responses/ # Prompt regression cases
+    `-- *.py              # pytest coverage (loops, tools, prompts, eval harness)
+</code></pre></div>
+<h2 id="stage-details">Stage Details</h2>
+<h3 id="1-similarity_loop-similarity_scorer">1. similarity_loop (<code>similarity_scorer</code>)</h3>
 <ul>
-<li>Processes large job queues without hitting API rate limits</li>
-<li>Automatic retry with extended cooldowns on rate limit errors</li>
-<li>Progress tracking and reporting between batches</li>
+<li><strong>Entry condition:</strong> <code>jobs.application_status IN ('Ready For Content','Checking Similarity')</code> with non-empty <code>resume_text</code>.</li>
+<li><strong>Step 1 tool:</strong> <code>asses_profile_determine_similarity_score()</code> selects a job and sets status to <code>Checking Similarity</code> to lock the row.</li>
+<li><strong>Step 2 tool:</strong> <code>process_similarity_score(job_id, similarity_score, similarity_reason)</code> stores the score + tagged reason and promotes rows to <code>Ready For Resume</code> when score &gt;= 6, otherwise <code>Not a Fit</code>.</li>
+<li><strong>Prompt:</strong> <code>SIMILARITY_SCORER_PROMPT2</code> enforces the rubric, policy gates, and JSON-only tool calls.</li>
+<li><strong>Loop guard:</strong> <code>similarity_loop_checker</code> stops once no additional rows match; otherwise the loop immediately claims the next job.</li>
 </ul>
-<h3 id="role-based-resume-selection">Role-Based Resume Selection</h3>
+<h3 id="2-resume_loop-resume_creator">2. resume_loop (<code>resume_creator</code>)</h3>
 <ul>
-<li>Automatically detects job role type from job title</li>
-<li>Selects appropriate resume folder based on role</li>
-<li>Falls back to engineer resume as default</li>
+<li><strong>Entry condition:</strong> <code>application_status IN ('Ready For Resume','Crafting Custom Resume')</code> with similarity &gt;= 6 and a resume seed.</li>
+<li><strong>Step 1 tool:</strong> <code>asses_similarity_determine_resume_content()</code> bundles job context and marks the row <code>Crafting Custom Resume</code>.</li>
+<li><strong>Step 2 tool:</strong> <code>process_custom_resume(job_id, custom_resume)</code> persists the bespoke resume, advances status to <code>Ready For Cover Letter</code>, and caches text for doc generation.</li>
+<li><strong>Prompt:</strong> <code>RESUME_CREATOR_PROMPT</code> locks in ATS formatting, quantified bullets, and pagination rules.</li>
+<li><strong>Loop guard:</strong> <code>resume_loop_checker</code> mirrors the similarity checker to keep iterating while work remains.</li>
 </ul>
-<h3 id="state-management">State Management</h3>
+<h3 id="3-cover_letter_loop-cover_letter_creator">3. cover_letter_loop (<code>cover_letter_creator</code>)</h3>
 <ul>
-<li>Uses ADK memory functions (memorize/recall_all) for session state</li>
-<li>Shares state between orchestrator and sub-agents</li>
-<li>Batch context passed via session state</li>
+<li><strong>Entry condition:</strong> <code>application_status IN ('Ready For Cover Letter','Crafting Cover Letter')</code> with a saved custom resume.</li>
+<li><strong>Step 1 tool:</strong> <code>assess_profile_determine_cover_letter()</code> retrieves the job bundle and sets status <code>Crafting Cover Letter</code>.</li>
+<li><strong>Step 2 tool:</strong> <code>process_cover_letter(job_id, cover_letter_text)</code> saves the letter, advances to <code>Ready For Docs</code>, and records the markdown for the Docs pipeline.</li>
+<li><strong>Prompt:</strong> <code>COVER_LETTER_PROMPT3</code> enforces the two-step workflow and fixed letter template (letterhead + three paragraphs + closing).</li>
+<li><strong>Loop guard:</strong> <code>cover_loop_checker</code> continues until there are no more rows ready for cover letter creation.</li>
 </ul>
-<h2 id="important-notes">Important Notes</h2>
-<ol>
-<li><strong>Memory Functions</strong>: Never wrap <code>memorize</code> or <code>recall_all</code> in FunctionTool (causes ADK errors)</li>
-<li><strong>Status Updates</strong>: Jobs stay in "Pending Review" after resource processing</li>
-<li><strong>Content Generator Dependency</strong>: Content generator expects jobs to have resume links before processing</li>
-<li><strong>Rate Limits</strong>: Google Drive API has quotas - batch processor handles this automatically</li>
-</ol>
-<h2 id="error-handling">Error Handling</h2>
+<h3 id="4-docs_loop-docs_pipeline">4. docs_loop (<code>docs_pipeline</code>)</h3>
 <ul>
-<li>Missing resume folders: Falls back to engineer resume</li>
-<li>API rate limits: Automatic cooldown and retry</li>
-<li>Failed folder creation: Job remains unprocessed for next batch</li>
-<li>Database errors: Transaction rollback to maintain consistency</li>
+<li><strong>Entry condition:</strong> <code>application_status = 'Ready For Docs'</code> with both <code>custom_resume</code> and <code>cover_letter_text</code> populated.</li>
+<li><strong>Step 1 tool:</strong> <code>prepare_documents_for_generation()</code> atomically claims one job and updates status to <code>Creating Docs</code>.</li>
+<li><strong>Step 2 tool:</strong> <code>finalize_documents(job_id, custom_resume, cover_letter_text, drive_folder_id)</code></li>
+<li>Injects content into Google Docs with tight margins, bold/links, and bullet styling.</li>
+<li>Exports both Docs to PDFs and stores Drive links in the database (<code>custom_resume_link</code>, <code>cover_letter_link</code>, <code>custom_resume_link_pdf</code>, <code>cover_letter_link_pdf</code>).</li>
+<li>Runs the optional fit-to-pages pass controlled by <code>RESUME_MAX_PAGES</code>.</li>
+<li>Sets application status to <code>Ready To Apply</code>.</li>
+<li><strong>Deterministic agent:</strong> <code>DocsPipelineAgent</code> extends <code>BaseAgent</code> to wrap both tool calls, emit ADK events, and capture errors.</li>
+<li><strong>Convenience tool:</strong> <code>run_docs_now()</code> exists for "one-click" completion when invoked from other ADK contexts.</li>
+<li><strong>Loop guard:</strong> <code>docs_loop_checker</code> mirrors the other checkers to churn through the backlog.</li>
+</ul>
+<h2 id="orchestration-control">Orchestration &amp; Control</h2>
+<ul>
+<li><strong>LoopAgents:</strong> Each loop is instantiated with <code>max_iterations=50</code>. Loop checkers manage state so the Orchestrator can invoke the loops repeatedly without busy-waiting.</li>
+<li><strong>debugger_agent:</strong> Accepts numeric commands (<code>1</code> -&gt; similarity, <code>2</code> -&gt; resume, <code>3</code> -&gt; cover letter, <code>4</code> -&gt; docs, plus <code>run_docs_now</code>). Primarily used for diagnostics; routine execution flows through the web Orchestrator.</li>
+<li><strong>Callbacks:</strong> <code>general_before_model_callback</code> and <code>similarity_before_model_callback</code> enforce user/model turn ordering, <code>intercept_and_correct_tool_call</code> strips stray text, and <code>simple_after_tool_callback</code> logs every tool response.</li>
+</ul>
+<h2 id="logging-diagnostics">Logging &amp; Diagnostics</h2>
+<ul>
+<li><code>utils/logging_config.py</code> centralizes logging into timestamped EST log files under <code>utils/logs/</code> and mirrors key events to stdout. Set <code>CONTENT_CONSOLE_LEVEL=DEBUG</code> to increase console verbosity while keeping full debug output on disk.</li>
+<li>Structured <code>[DOCS]</code>, <code>[AFTER_MODEL_LOG]</code>, and <code>[BEFORE_AGENT]</code> entries in <code>agent.py</code> make it easy to trace progress across the four loops.</li>
+</ul>
+<h2 id="testing-evaluations">Testing &amp; Evaluations</h2>
+<ul>
+<li>The <code>tests/</code> package covers loops, tool layers, prompts, and end-to-end flows. See <code>tests/README.md</code> for the full breakdown.</li>
+<li><code>tests/evals/content_generator_eval_001.evalset.json</code> (and siblings) feed ADK's <code>AgentEvaluator</code> to validate the two-step workflows without hitting live models. Tests monkeypatch the model for determinism but the eval harness is wired for the same evaluation model used in production ADK runs.</li>
+<li><code>tests/golden_responses/</code> stores prompt regression fixtures that mirror live trajectories.</li>
+<li>Run everything with <code>pytest -v orchestrator_agent/sub_agents/content_agent/tests</code>. Targeted runs (e.g., eval harness or DB tooling) can be executed with the individual file paths outlined in <code>tests/README.md</code>.</li>
 </ul>
 
 
