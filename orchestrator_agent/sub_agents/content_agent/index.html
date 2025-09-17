@@ -416,6 +416,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tools-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools Used
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#orchestration-control" class="md-nav__link">
     <span class="md-ellipsis">
       Orchestration &amp; Control
@@ -750,6 +759,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tools-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools Used
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#orchestration-control" class="md-nav__link">
     <span class="md-ellipsis">
       Orchestration &amp; Control
@@ -862,10 +880,23 @@ Ready To Apply
 <li><strong>Convenience tool:</strong> <code>run_docs_now()</code> exists for "one-click" completion when invoked from other ADK contexts.</li>
 <li><strong>Loop guard:</strong> <code>docs_loop_checker</code> mirrors the other checkers to churn through the backlog.</li>
 </ul>
+<h2 id="tools-used">Tools Used</h2>
+<ul>
+<li><code>asses_profile_determine_similarity_score</code> - claims the next content-ready job and locks it for similarity scoring.</li>
+<li><code>process_similarity_score</code> - writes score and rubric reason, promoting strong matches to resume generation.</li>
+<li><code>asses_similarity_determine_resume_content</code> - bundles resume-ready job context and flips status to crafting mode.</li>
+<li><code>process_custom_resume</code> - saves the bespoke resume text and advances the job to cover letter generation.</li>
+<li><code>assess_profile_determine_cover_letter</code> - retrieves the job plus custom resume for cover letter drafting and locks the row.</li>
+<li><code>process_cover_letter</code> - saves the formatted cover letter and moves the job to docs preparation.</li>
+<li><code>prepare_documents_for_generation</code> - claims Ready For Docs jobs and returns resume, cover letter, and Drive folder details.</li>
+<li><code>finalize_documents</code> - builds Google Docs, exports PDFs, stores Drive links, and marks the job Ready To Apply.</li>
+<li><code>run_docs_now</code> - convenience wrapper to execute the docs pipeline without starting the full loop.</li>
+<li><code>check_similarity_loop_condition</code>, <code>check_resume_loop_condition</code>, <code>check_cover_loop_condition</code>, <code>check_docs_loop_condition</code> - loop guard tools that decide when each agent should keep pulling work.</li>
+</ul>
 <h2 id="orchestration-control">Orchestration &amp; Control</h2>
 <ul>
-<li><strong>LoopAgents:</strong> Each loop is instantiated with <code>max_iterations=50</code>. Loop checkers manage state so the Orchestrator can invoke the loops repeatedly without busy-waiting.</li>
-<li><strong>debugger_agent:</strong> Accepts numeric commands (<code>1</code> -&gt; similarity, <code>2</code> -&gt; resume, <code>3</code> -&gt; cover letter, <code>4</code> -&gt; docs, plus <code>run_docs_now</code>). Primarily used for diagnostics; routine execution flows through the web Orchestrator.</li>
+<li><strong>LoopAgents:</strong> Each loop is instantiated with <code>max_iterations=5</code>. Loop checkers manage state so the Orchestrator can invoke the loops repeatedly without busy-waiting.</li>
+<li><strong>Orchestrator-driven execution:</strong> The main orchestrator invokes each LoopAgent.</li>
 <li><strong>Callbacks:</strong> <code>general_before_model_callback</code> and <code>similarity_before_model_callback</code> enforce user/model turn ordering, <code>intercept_and_correct_tool_call</code> strips stray text, and <code>simple_after_tool_callback</code> logs every tool response.</li>
 </ul>
 <h2 id="logging-diagnostics">Logging &amp; Diagnostics</h2>
