@@ -699,11 +699,11 @@
 
 
 <h1 id="job-application-assistant">Job Application Assistant</h1>
-<p>A sophisticated multi-agent job application automation system built on Google's Agent Development Kit (ADK). This system automates the complete job application workflow: scraping jobs from multiple sites, creating Google Drive folders with resumes, generating tailored cover letters, and submitting applications.</p>
+<p>A sophisticated multi-agent job application automation system built on Google's Agent Development Kit (ADK). This system automates the complete job application workflow: scraping jobs from multiple sites or manually with a custom chrome extension, creating Google Drive folders with bespoke resumes and cover letters, generating similarity scores, bespoke resumes, cover letters, submitting applications, and email monitoring and classification with updates to the application status.</p>
 <h2 id="system-architecture">🏗️ System Architecture</h2>
-<p><div class="highlight"><pre><span></span><code>User Input → Orchestrator Agent → Specialized Sub-Agents → Database &amp; Google Drive
+<div class="highlight"><pre><span></span><code>User Input → Orchestrator Agent → Specialized Sub-Agents → Database &amp; Google Drive
 </code></pre></div>
-<img alt="Process Map" src="images/process-map.png" /></p>
+<p><img alt="Process Map" src="images/process-map.png" /></p>
 <h3 id="agent-hierarchy">Agent Hierarchy</h3>
 <div class="highlight"><pre><span></span><code>orchestrator_agent (LlmAgent)
 ├── job_scraper_agent (scrapes from 5+ sites)
@@ -720,18 +720,22 @@
 <ul>
 <li><strong>Multi-Site Job Scraping</strong>: LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs</li>
 <li><strong>Smart Deduplication</strong>: Prevents duplicate applications across sites</li>
-<li><strong>Chrome Extension</strong>: Manual job saving from any website with one-click integration</li>
+<li><strong>Chrome Extension</strong>: Manual job saving from any website with one-click integration and manual job submitting rich with features.</li>
 <li><strong>Google Drive Integration</strong>: Automated folder creation and document management</li>
 <li><strong>AI Content Generation</strong>: Personalized cover letters using Gemini models And Resumes</li>
-<li><strong>Browser Automation</strong>: Headless job application submission with CAPTCHA solving </li>
-<li><strong>Email Classification</strong>: Process job-related emails automatically</li>
-<li><strong>Batch Processing</strong>: Handle large volumes with rate limiting</li>
+<li><strong>Browser Automation</strong>: Job application submission with CAPTCHA solving and custom userscript form filling.</li>
+<li><strong>Email Classification</strong>: Process job-related emails automatically, and update the application status.</li>
+<li><strong>Batch Processing</strong>: Handle large volumes with rate limiting.</li>
 </ul>
 <h2 id="cli-usage">🧰 CLI Usage</h2>
 <p>You can run common operations via a simple CLI using the module runner:</p>
 <ul>
-<li>Trigger Google OAuth (required before Drive pipeline):</li>
-<li><code>python -m orchestrator_agent drive-auth</code></li>
+<li>
+<p>Trigger Google OAuth (required before Drive pipeline):</p>
+</li>
+<li>
+<p><code>python -m orchestrator_agent drive-auth</code></p>
+</li>
 <li>
 <p>Force re-login: <code>python -m orchestrator_agent drive-auth --force</code></p>
 </li>
